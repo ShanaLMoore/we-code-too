@@ -1,7 +1,7 @@
 class PinsController < ApplicationController
   
   def index
-    @pins = Pin.all
+    @pins = current_user.pins
   end
 
   def new
@@ -14,6 +14,7 @@ class PinsController < ApplicationController
 
   def create
     @pin = Pin.new(pin_params)
+    @pin.user_id = current_user.id
 
     if @pin.valid?
       @pin.save
