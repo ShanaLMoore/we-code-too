@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  lipstick_id: 1
+  skintone_shade: MyString
+
+two:
+  user_id: 1
+  lipstick_id: 1
+  skintone_shade: MyString

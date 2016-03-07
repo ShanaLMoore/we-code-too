@@ -1,0 +1,35 @@
+/*
+body {
+  background:url(asset-path('ignasi_pattern_s.png'));
+}*/
+
+a {
+  color: #000;
+}
+
+h1 {
+  font-family: 'Walter Turncoat', cursive;
+  font-size: 60px;
+  color: #000;
+}
+
+h3 {
+  font-family: 'Amatic SC', cursive;
+}
+
+.pin-container{
+  padding: 10px;
+}
+.pin {
+  padding: 40px;
+  min-height: 343px;
+  background-color: #fff;
+  border: 1px solid #efefef;
+}
+.show-pin{
+  background-color: #fff;
+  padding: 40px;  
+}
+hr{
+  clear:both;
+}

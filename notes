@@ -1,0 +1,13 @@
+Lipsticks
+  - has many swatches
+  - has many models (users) through swatches = 
+  - belongs to model (user) = 
+
+Swatches
+  - belongs to model (user) =
+  - belongs to lipstick =
+
+Users alias = models
+  - has many lipsticks
+  - has many swatches
+  - has many swatched_lipsticks through swatches
