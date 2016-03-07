@@ -39,6 +39,12 @@ class PinsController < ApplicationController
     end
   end
 
+  def destroy
+    @pin = Pin.find(params[:id])
+    @pin.destroy!
+    redirect_to pins_path
+  end
+
   def show_by_name
     @pin = Pin.find_by_slug(params[:slug])
     render :show
@@ -47,7 +53,7 @@ class PinsController < ApplicationController
   private
 
   def pin_params
-    params.require(:pin).permit(:title, :url, :slug, :text, :resource_type, :image)
+    params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image, :user_id)
   end
   
 end

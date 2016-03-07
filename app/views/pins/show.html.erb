@@ -3,7 +3,10 @@
     <%= "#{@pin.title}" %>
   </h1>
 </div>
-
+      <%= link_to "Back to Home", root_path %><br>
+      <%= link_to "Edit Pin", edit_pin_path(@pin) %><br>
+      <%= link_to "Delete Pin", pin_path(@pin), :confirm => "Are you sure?", :method => :delete %>
+      <hr>
 <div class="show-pin">
   <img src="<%= @pin.image.url(:medium) %>"><br> 
   <p><%= "#{@pin.text}" %></p>
@@ -11,10 +14,8 @@
   <hr/>
   <p>
     <b>Visit <%= "#{@pin.title}" %> at: </b>
-      <%= link_to "#{@pin.url}", @pin.url, html_options={class: "url"} %>
+      <%= link_to "#{@pin.url}", @pin.url, html_options={class: "url"} %><br><br>
+
   </p>
 </div>
-<br/>
-<a href="/">
-  Back to Home
-</a>
+

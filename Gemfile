@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'devise'
+gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'oauth2'
 gem 'dotenv-rails', :groups => [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'paperclip'
@@ -51,8 +53,8 @@ group :development do
   gem 'database_cleaner'  
 end
 
-group :production do
-  gem 'pg',             '0.17.1'
-  gem 'rails_12factor'  
-end
+# group :production do
+#   gem 'pg',             '0.17.1'
+#   gem 'rails_12factor'  
+# end
 

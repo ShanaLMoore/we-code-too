@@ -15,7 +15,7 @@
   <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>  
 
   <%= yield %>
-  <%= link_to("Sign out", destroy_user_session_path, :method => 'delete') %>
+
 </div>
 </body>
 </html>
