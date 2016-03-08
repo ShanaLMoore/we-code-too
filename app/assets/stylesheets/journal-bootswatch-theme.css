@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=News+Cycle:400,700");
+@import "bootstrap-sprockets";
+@import "bootstrap";
 /*!
  * bootswatch v3.3.6
  * Homepage: http://bootswatch.com
@@ -245,6 +247,7 @@ th {
   h3 {
     page-break-after: avoid;
   }
+
   .navbar {
     display: none;
   }
@@ -1587,6 +1590,7 @@ pre code {
   overflow-y: scroll;
 }
 .container {
+  margin-top: 100px;
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -4596,8 +4600,9 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #cccccc;
 }
 .navbar-inverse {
-  background-color: #eb6864;
-  border-color: #e53c37;
+  background-color: black;
+  border-color: black;
+  padding-right: 20px;
 }
 .navbar-inverse .navbar-brand {
   color: #ffffff;

@@ -3,7 +3,6 @@
     <%= "#{@pin.title}" %>
   </h1>
 </div>
-      <%= link_to "Back to Home", root_path %><br>
       <%= link_to "Edit Pin", edit_pin_path(@pin) %><br>
       <%= link_to "Delete Pin", pin_path(@pin), :confirm => "Are you sure?", :method => :delete %>
       <hr>
