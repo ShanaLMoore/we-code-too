@@ -25,10 +25,8 @@ class Pin < ActiveRecord::Base
   end
 
   def category_name=(name)
-    if name != ''
       category = Category.find_or_create_by(:name => name)
       self.categories << category unless self.categories.include? category
-    end
   end
 
  def normalize_url!
