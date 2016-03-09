@@ -4,8 +4,9 @@ class Pin < ActiveRecord::Base
   has_many :pin_categories
   has_many :categories, through: :pin_categories
   belongs_to :user
+  before_create :normalize_url!
 
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "60x60>" }, default_url: "http://placebear.com/300/300" 
+  has_attached_file :image, styles: { medium: "300x300>"}, default_url: "http://placebear.com/300/300" 
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   def self.most_popular_category
@@ -29,5 +30,9 @@ class Pin < ActiveRecord::Base
       self.categories << category unless self.categories.include? category
     end
   end
+
+ def normalize_url!
+   self.url = url.start_with?("http") ? url : "http://" + "#{url}"
+end
 
 end
