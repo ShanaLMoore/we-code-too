@@ -1,7 +1,8 @@
 class Pin < ActiveRecord::Base
   validates_presence_of :title, :url, :slug, :text, :user_id
   validates_uniqueness_of :slug
-  belongs_to :category
+  has_many :pin_categories
+  has_many :categories, through: :pin_categories
   belongs_to :user
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "60x60>" }, default_url: "http://placebear.com/300/300" 
@@ -18,4 +19,12 @@ class Pin < ActiveRecord::Base
 
     category.name
   end
+
+  def category_name=(name)
+    if name != ''
+      category = Category.find_or_create_by(:name => name)
+      self.categories << category unless self.categories.include? category
+    end
+  end
+
 end

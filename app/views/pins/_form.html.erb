@@ -30,8 +30,9 @@
    
     <div class="form-group">
       <label for="pin_category_id" class="col-sm-2 control-label">Category</label>
-      <div class="col-sm-10">
-        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class: "form-control"}) %>
+      <div class="col-sm-10 ">
+        <%= text_field_tag 'pin[category_name]', nil, class: "form-control" %>
+        <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'or select a category' %>
       </div>
     </div>
 
@@ -50,7 +51,7 @@
     </div>
 
     <div class="form-group">
-      <label for="pin_text" class="col-sm-2 control-label">Text</label>
+      <label for="pin_text" class="col-sm-2 control-label">Description</label>
       <div class="col-sm-10">
         <%= f.text_area :text, class: "form-control" %>
       </div>

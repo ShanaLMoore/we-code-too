@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307150951) do
+ActiveRecord::Schema.define(version: 20160309005217) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
   end
+
+  create_table "pin_categories", force: :cascade do |t|
+    t.integer "pin_id"
+    t.integer "category_id"
+  end
+
+  add_index "pin_categories", ["category_id"], name: "index_pin_categories_on_category_id"
+  add_index "pin_categories", ["pin_id"], name: "index_pin_categories_on_pin_id"
 
   create_table "pins", force: :cascade do |t|
     t.string   "title"
@@ -34,8 +42,16 @@ ActiveRecord::Schema.define(version: 20160307150951) do
   add_index "pins", ["category_id"], name: "index_pins_on_category_id"
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
 
+  create_table "profiles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
+    t.integer  "profile_id"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"

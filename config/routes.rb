@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  resources :profiles
   #route for Omniauth to send its authentication data to:
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
   resources :pins
 
   # resources :users do
-  #     resources :pins
+  #     resources :profiles
   # end
 
   # The priority is based upon order of creation: first created -> highest priority.
