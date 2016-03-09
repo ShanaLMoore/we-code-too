@@ -15,9 +15,12 @@ class Pin < ActiveRecord::Base
        @id = key if value == popular.values.max
     end
 
-    category = Category.find(@id)
-
-    category.name
+    if @id == nil
+       "unkown"
+    else
+      category = Category.find(@id)
+      category.name
+    end
   end
 
   def category_name=(name)
