@@ -4,7 +4,7 @@ class PinsController < ApplicationController
     @pins = current_user.pins
     respond_to do |format|
       format.html {render :index}
-      format.json {render json: @pins.to_json}
+      format.json {render json: @pins}
     end
     # @pins = Pin.search("Girl Develop It")
   end
@@ -15,6 +15,10 @@ class PinsController < ApplicationController
   
   def show
     @pin = Pin.find(params[:id])
+     respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @pin}
+    end   
   end
 
   def create
@@ -59,7 +63,7 @@ class PinsController < ApplicationController
   private
 
   def pin_params
-    params.require(:pin).permit(:title, :url, :slug, :text, :category_name, :image, :user_id)
+    params.require(:pin).permit(:title, :url,:text, :category_name, :image, :user_id)
   end
   
 end

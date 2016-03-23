@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20160309005217) do
     t.string   "title"
     t.string   "url"
     t.text     "text"
-    t.string   "slug"
     t.integer  "category_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
