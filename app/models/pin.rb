@@ -24,6 +24,10 @@ class Pin < ActiveRecord::Base
     end
   end
 
+  def self.search(title)
+     where(title: title)
+  end
+
   def category_name=(name)
       category = Category.find_or_create_by(:name => name)
       self.categories << category unless self.categories.include? category

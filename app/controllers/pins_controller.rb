@@ -2,6 +2,7 @@ class PinsController < ApplicationController
   
   def index
     @pins = current_user.pins
+    # @pins = Pin.search("Girl Develop It")
   end
 
   def new
