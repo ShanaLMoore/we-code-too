@@ -2,6 +2,11 @@ class PinsController < ApplicationController
   
   def index
     @pins = current_user.pins
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @pins.to_json}
+    end
+    # @pins = Pin.search("Girl Develop It")
   end
 
   def new
