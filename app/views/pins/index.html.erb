@@ -11,6 +11,7 @@
     <div class="row">
       <% row.each do |pin| %>      
         <div class="pin-container col-md-4">
+          <button class="js-more btn" data-id="<%= pin.id %>">More Info</button>
           <div class="pin">
             <div class="pin-header row">
               <div class="logo-thumbnail col-xs-3">
@@ -27,12 +28,25 @@
                 <%= link_to "#{pin.url}", pin.url, html_options = {target: "_blank", class: "url"} %>
             </div>
             <hr/>
-            <p class="text"><%= "#{pin.text}" %></p>
+            <div id="pin-<%= pin.id %>"><%= truncate(pin.text, length:0) %></div>
           </div>
         </div>
       <% end %>
     </div>
   <% end %>
 </div>
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/pins/" + id + ".json", function(data) {
+      var pin = data["pin"];
 
+      var descriptionText = "<p>" + pin["text"] + "</p>";
+      $("#pin-" + id).html(descriptionText);
+
+    });
+  });
+});
+</script>
 <hr/>
