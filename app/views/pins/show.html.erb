@@ -1,19 +1,42 @@
 <div class="header">
-  <h1>
+  <h1 class="pinTitle">
     <%= "#{@pin.title}" %>
   </h1>
 </div>
       <%= link_to "Edit Pin", edit_pin_path(@pin) %><br>
-      <%= link_to "Delete Pin", pin_path(@pin), :confirm => "Are you sure?", :method => :delete %>
+      <%= link_to "Delete Pin", pin_path(@pin), :confirm => "Are you sure?", :method => :delete %><br>
+      <a href="#" class="js-next" data-id="<%=@pin.id%>">Next Pin</a>
       <hr>
 <div class="show-pin">
-  <img src="<%= @pin.image.url(:medium) %>"><br> 
-  <p><%= "#{@pin.text}" %></p>
+  <img class="pinImage" src="<%= @pin.image.url(:medium) %>" ><br> 
+  <p class="pinText"><%= "#{@pin.text}" %></p>
 
   <hr/>
   <p>
-    <b>Visit <%= "#{@pin.title}" %> at: </b>
-      <%= link_to "#{@pin.url}", @pin.url, html_options = {target: "_blank", class: "url"} %><br><br>
+    <b class="pinTitle">Visit: <%= "#{@pin.title}" %> at: </b>
+      <%= link_to "#{@pin.url}", @pin.url, html_options = {target: "_blank", class: "url pinUrl"} %><br><br>
   </p>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/pins/" + nextId + ".json", function(data) {
+      var pin = data["pin"];
+      $(".pinTitle").text(pin["title"]);
+      $(".pinUrl").text(pin["url"]);
+      $(".pinText").text(pin["text"]);
+      $(".pinImage").text(pin["image"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", pin["id"]);
+    });
+  });
+});
+</script>  
 </div>
+
+
+
+
+
 

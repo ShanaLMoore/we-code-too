@@ -4,7 +4,6 @@ class CreatePins < ActiveRecord::Migration
       t.string :title
       t.string :url
       t.text :text
-
       
     end
   end
