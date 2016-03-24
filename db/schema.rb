@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309005217) do
+ActiveRecord::Schema.define(version: 20160324025927) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "dimensions_validators", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pin_categories", force: :cascade do |t|
