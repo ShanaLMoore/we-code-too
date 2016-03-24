@@ -12,7 +12,7 @@ class Pin < ActiveRecord::Base
     popular = self.group(:category_id).count
 
     popular.each do |key, value| 
-       @id = key if value == popular.values.max
+       id = key if value == popular.values.max
     end
 
     if @id == nil
