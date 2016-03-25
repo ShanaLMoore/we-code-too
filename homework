@@ -5,3 +5,8 @@ json for the categories.
 more info to include the categories each pin is in. 
 
 When viewing a Pin, be able to categorize the pin without page refresh
+
+
+        <%= text_field_tag 'pin[category_name]', nil, class: "form-control" %>
+
+        <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'or select a category' %>
