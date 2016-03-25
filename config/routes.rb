@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'pins#index'
 
   resources :pins
+  resources :categories, only: [:index]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

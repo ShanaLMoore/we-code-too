@@ -1,0 +1,7 @@
+make a new view to be able to display pins by categories. 
+
+json for the categories. 
+
+more info to include the categories each pin is in. 
+
+When viewing a Pin, be able to categorize the pin without page refresh
