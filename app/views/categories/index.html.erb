@@ -1,18 +1,39 @@
 
 <div class="pins">
-  <h1>categories:</h1>
-    
-  <% if @pins.empty? %>
-  <h1 style="color:brown;">You have no pins! <br> <%= link_to "Add",new_pin_path %> some to display here!</h1>
-  <% else %>
   <h4>
     <%=link_to "= Display All Pins =", pins_path %>
   </h4>
-    <ul>
+  <h1 style="text-decoration: underline;">categories:</h1>
+    <ul class="block">
       <% @categories.each do |category| %>
-        <h3><%= category.name %></h3>
+      <h2><%= "#{category.name}" %></h2>
+        <% category.pins.each_slice(3) do |row| %> 
+                  <div class="row">
+      <% row.each do |pin| %>      
+                    <div class="pin-container col-md-4">
+                      <div class="pin">
+                        <div class="pin-header row">
+                          <div>
+                              <% if pin.image %>
+                                <img src="<%= pin.image.url(:medium) %>">
+                                <% end %>
+                              </div>
+                            </div>
 
-      <% end %>
-    </ul>
- <% end %>
+                        <div >
+                          <h4>
+                            <%=link_to "#{pin.title}", pin_path(pin)%>
+                          </h4>
+                            <%= link_to "#{pin.url}", pin.url, html_options = {target: "_blank", class: "url"} %><br>
+                        </div>
+                        <hr/>
+                        <button class="js-more btn btn-default form-control" data-id="<%= pin.id %>">More Info</button>
+                        <div id="pin-<%= pin.id %>"><%= truncate(pin.text, length:0) %></div>
+                      </div>
+                    </div>
+                      <% end %>
+                    </div>
+                    <%end %>
+  <% end %>
+  </ul>
 </div>

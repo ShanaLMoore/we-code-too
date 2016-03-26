@@ -4,7 +4,7 @@ class Pin < ActiveRecord::Base
   has_many :categories, through: :pin_categories
   belongs_to :user
   before_create :normalize_url!
-  accepts_nested_attributes_for :categories
+  accepts_nested_attributes_for :categories, reject_if: proc { |attributes| attributes['name'].blank? }
 
   has_attached_file :image, styles: { medium: "300x300>"}, default_url: "http://placebear.com/300/300" 
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
@@ -26,8 +26,10 @@ class Pin < ActiveRecord::Base
 
   def categories_attributes=(category_attributes)
     category_attributes.values.each do |category_attribute|
-      category = Category.find_or_create_by(category_attribute)
-      self.categories << category unless self.categories.include? category
+      if category_attribute["name"] != ""
+        category = Category.find_or_create_by(category_attribute)
+        self.categories << category unless self.categories.include? category
+      end
     end
   end
 

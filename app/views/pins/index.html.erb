@@ -45,7 +45,6 @@ $(function() {
     var id = $(this).data("id");
     $.get("/pins/" + id + ".json", function(data) {
       var pin = data["pin"];
-
       var descriptionText = "<br><p><strong>" + pin["text"] + "</strong></p>";
       $("#pin-" + id).html(descriptionText);
 

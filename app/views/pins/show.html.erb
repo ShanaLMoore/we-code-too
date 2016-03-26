@@ -8,9 +8,10 @@
         <%= link_to "Delete Pin", pin_path(@pin), :confirm => "Are you sure?", :method => :delete %><br>
         <a href="#" class="js-next" data-id="<%=@pin.id%>">Next Pin</a>
         <hr>
+
   <div class="show-pin">
-    <img class="pinImage" src="<%= @pin.image.url(:medium) %>" ><br><br><br><br>
-    <p class="pinText"><%= "#{@pin.text}" %></p>
+    <img class="pinImage" src="<%= @pin.image.url(:medium) %>" ><br><br>
+    <p class="pinText"><%= "#{@pin.text.upcase}" %></p>
 
     <hr/>
     <p>
