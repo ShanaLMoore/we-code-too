@@ -8,7 +8,7 @@
   <h1 style="color:brown;">You have no pins! <br> <%= link_to "Add",new_pin_path %> some to display here!</h1>
   <% else %>
   <h4>
-    <%=link_to "= Display Pins by Categories =", categories_path %>
+    <%=link_to "= Display Pins by Category =", categories_path %>
   </h4>
   <% @pins.each_slice(3) do |row| %>
     <div class="row">

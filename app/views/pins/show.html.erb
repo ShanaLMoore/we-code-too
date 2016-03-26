@@ -19,6 +19,45 @@
         <%= link_to "#{@pin.url}", @pin.url, html_options = {target: "_blank", class: "url pinUrl"} %><br><br>
     </p>
 
+    <% @pin.categories.each do |category| %>
+      <% if category.name == ""%>
+        <li><%= "CATEGORY UNASSIGNED" %></li>
+      <% else %> 
+        <li><%= "#{category.name.upcase}" %></li>
+      <% end %>
+    <% end %>
+
+    <br><br>
+
+    <%= form_for @pin do |f| %>
+      <div class="col-sm-6">
+        <%= f.fields_for :categories, @pin.categories.build do |categories_fields| %>
+          <%= categories_fields.text_field :name, class: "form-control" %>
+        <% end %> 
+       </div>
+      <div class="col-sm-6">
+        <%= f.submit "Update Categories",(options = {class: "btn btn-default form-control"}) %>
+      </div>     
+    <% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+ 
+      var values = $(this).serialize();
+ 
+      var posting = $.post('/categories', values);
+ 
+      posting.done(function(data) {
+        var pin = data["pin"];
+        $("#pinCategory").text(post["category"]);
+      });
+    });
+  });
+</script>
+
   <script type="text/javascript" charset="utf-8">
   $(function () {
     $(".js-next").on("click", function() {
@@ -29,7 +68,6 @@
         $(".pinUrl").text(pin["url"]);
         $(".pinText").text(pin["text"]);
         $(".pinImage").attr("src",pin["image"]);
-        // re-set the id to current on the link
         $(".js-next").attr("data-id", pin["id"]);
       });
     });

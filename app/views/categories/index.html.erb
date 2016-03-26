@@ -6,34 +6,39 @@
   <h1 style="text-decoration: underline;">categories:</h1>
     <ul class="block">
       <% @categories.each do |category| %>
-      <h2><%= "#{category.name}" %></h2>
+      <% if category.name == "" %>
+        <h2><%= "unassigned" %></h2>
+      <% else %>
+        <h2><%= "#{category.name}" %></h2>
+      <% end %>
+      
         <% category.pins.each_slice(3) do |row| %> 
-                  <div class="row">
-      <% row.each do |pin| %>      
-                    <div class="pin-container col-md-4">
-                      <div class="pin">
-                        <div class="pin-header row">
-                          <div>
-                              <% if pin.image %>
-                                <img src="<%= pin.image.url(:medium) %>">
-                                <% end %>
-                              </div>
-                            </div>
-
-                        <div >
-                          <h4>
-                            <%=link_to "#{pin.title}", pin_path(pin)%>
-                          </h4>
-                            <%= link_to "#{pin.url}", pin.url, html_options = {target: "_blank", class: "url"} %><br>
+          <div class="row">
+            <% row.each do |pin| %>      
+                <div class="pin-container col-md-4">
+                  <div class="pin">
+                    <div class="pin-header row">
+                      <div>
+                          <% if pin.image %>
+                            <img src="<%= pin.image.url(:medium) %>">
+                          <% end %>
                         </div>
-                        <hr/>
-                        <button class="js-more btn btn-default form-control" data-id="<%= pin.id %>">More Info</button>
-                        <div id="pin-<%= pin.id %>"><%= truncate(pin.text, length:0) %></div>
                       </div>
-                    </div>
-                      <% end %>
-                    </div>
-                    <%end %>
+                    <div>
+                  <h4>
+                    <%=link_to "#{pin.title}", pin_path(pin)%>
+                  </h4>
+                    <%= link_to "#{pin.url}", pin.url, html_options = {target: "_blank", class: "url"} %><br>
+                  </div>
+                <hr/>
+              <h5><%= "#{pin.text}" %></h5>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <%end %>
   <% end %>
   </ul>
 </div>
+
+

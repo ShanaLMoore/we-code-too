@@ -28,6 +28,7 @@ class PinsController < ApplicationController
     if @pin.valid?
       @pin.save
       redirect_to pin_path(@pin)
+      # render json: @pin, status: 201
     else
       @errors = @pin.errors
       render :new
