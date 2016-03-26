@@ -1,10 +1,10 @@
 class Pin < ActiveRecord::Base
-  validates_presence_of :title, :url, :text, :user_id, :category_ids
+  validates_presence_of :title, :url, :text, :user_id
   has_many :pin_categories
   has_many :categories, through: :pin_categories
   belongs_to :user
   before_create :normalize_url!
-  accepts_nested_attributes_for :categories, reject_if: :reject_categories?
+  accepts_nested_attributes_for :categories, reject_if: :all_blank
 
   has_attached_file :image, styles: { medium: "300x300>"}, default_url: "http://placebear.com/300/300" 
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }

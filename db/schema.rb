@@ -11,15 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324025927) do
+ActiveRecord::Schema.define(version: 20160309005217) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-  end
-
-  create_table "dimensions_validators", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "pin_categories", force: :cascade do |t|
@@ -34,7 +29,6 @@ ActiveRecord::Schema.define(version: 20160324025927) do
     t.string   "title"
     t.string   "url"
     t.text     "text"
-    t.integer  "category_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -43,7 +37,6 @@ ActiveRecord::Schema.define(version: 20160324025927) do
     t.integer  "user_id"
   end
 
-  add_index "pins", ["category_id"], name: "index_pins_on_category_id"
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
 
   create_table "profiles", force: :cascade do |t|

@@ -5,16 +5,15 @@
   <% if @pins.empty? %>
   <h1 style="color:brown;">You have no pins! <br> Add some to display here!</h1>
   <% else %>
-  <% @categories.each do |category| %>
-
-  <h2>= <%= category.name %> =</h2>
+  <h4>
+    <%=link_to "= Display All Pins =", pins_path %>
+  </h4>
 
     <% @pins.each_slice(3) do |row| %>
       <div class="row">
         <% row.each do |pin| %> 
-        
-          <% if pin.category_id == category.id  %>
-     
+          <% pin.categories.each do |category| %>
+           <h2><%= category.name.upcase %></h2>                          
             <div class="pin-container col-md-4">
               <div class="pin">
                 <div class="pin-header row">
@@ -41,5 +40,4 @@
       <% end %>
     </div>
   <% end %>
- <%end %> 
 </div>

@@ -5,3 +5,5 @@ class CategoriesController < ApplicationController
     @pins = Pin.all
   end
 end
+
+

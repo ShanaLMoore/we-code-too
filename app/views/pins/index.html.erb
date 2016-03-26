@@ -1,15 +1,15 @@
 <div>
   <h1 class="title">We Code Too!</h1><h3>A Collection of Diversity-Friendly Tech Resources!</h3>
-  <p class="current_user">You are logged in as: <%= current_user.email %></p><br>
-  <h4>
-    <%=link_to "= Display Pins by Categories =", categories_path %>
-  </h4>  
+  <p class="current_user">You are logged in as: <%= current_user.email %></p><br>  
 </div>
 <hr/>
 <div class="pins">
   <% if @pins.empty? %>
   <h1 style="color:brown;">You have no pins! <br> Add some to display here!</h1>
-  <%end %>
+  <% else %>
+  <h4>
+    <%=link_to "= Display Pins by Categories =", categories_path %>
+  </h4>
   <% @pins.each_slice(3) do |row| %>
     <div class="row">
       <% row.each do |pin| %>      
@@ -36,6 +36,7 @@
         </div>
       <% end %>
     </div>
+  <% end %>
   <% end %>
 </div>
 <script type="text/javascript" charset="utf-8">
