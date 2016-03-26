@@ -17,6 +17,11 @@ class CategoriesController < ApplicationController
   #   end   
   # end
 
+  def create
+    @pin = Pin.find(params[:id])
+    # @pin = @pin.categories.build(name: params[:name])
+    render json: @pin, status: 201
+  end
 end
 
 
