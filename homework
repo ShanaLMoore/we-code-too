@@ -10,3 +10,35 @@ When viewing a Pin, be able to categorize the pin without page refresh
         <%= text_field_tag 'pin[category_name]', nil, class: "form-control" %>
 
         <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'or select a category' %>
+
+         <% @pins.each_slice(3) do |row| %>
+      <div class="row">
+        <% row.each do |pin| %> 
+          <% pin.categories.each do |category| %>
+           <h2><%= category.name.upcase %></h2>                          
+            <div class="pin-container col-md-4">
+              <div class="pin">
+                <div class="pin-header row">
+                  <div>
+                      <% if pin.image %>
+                        <img src="<%= pin.image.url(:medium) %>">
+                        <% end %>
+                      </div>
+                    </div>
+
+                <div >
+                  <h4>
+                    <%=link_to "#{pin.title}", pin_path(pin)%>
+                  </h4>
+                    <%= link_to "#{pin.url}", pin.url, html_options = {target: "_blank", class: "url"} %>
+                </div>
+                <hr/>
+                <button class="js-more btn btn-default form-control" data-id="<%= pin.id %>">More Info</button>
+                <div id="pin-<%= pin.id %>"><%= truncate(pin.text, length:0) %></div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>    
+      <% end %>
+    </div>
+  <% end %>

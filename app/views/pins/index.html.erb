@@ -5,7 +5,7 @@
 <hr/>
 <div class="pins">
   <% if @pins.empty? %>
-  <h1 style="color:brown;">You have no pins! <br> Add some to display here!</h1>
+  <h1 style="color:brown;">You have no pins! <br> <%= link_to "Add",new_pin_path %> some to display here!</h1>
   <% else %>
   <h4>
     <%=link_to "= Display Pins by Categories =", categories_path %>
