@@ -43,3 +43,7 @@ hr{
 .show {
   text-align: center;
 }
+
+.scroll {
+  border:2px solid #ccc; height: 100px; overflow-y: scroll;
+}

@@ -3,13 +3,13 @@
   <h4>
     <%=link_to "= Display All Pins =", pins_path %>
   </h4>
-  <h1 style="text-decoration: underline;">categories:</h1>
+  <h1 style="text-decoration: underline;">CATEGORIES:</h1>
     <ul class="block">
       <% @categories.each do |category| %>
       <% if category.name == "" %>
         <h2><%= "unassigned" %></h2>
       <% else %>
-        <h2><%= "#{category.name}" %></h2>
+        <h2><%= "#{category.name.pluralize}" %></h2>
       <% end %>
       
         <% category.pins.each_slice(3) do |row| %> 

@@ -5,7 +5,7 @@
     </h1>
   </div>
         <%= link_to "Edit Pin", edit_pin_path(@pin) %><br>
-        <%= link_to "Delete Pin", pin_path(@pin), :confirm => "Are you sure?", :method => :delete %><br>
+        <%= link_to "Delete Pin", pin_path(@pin), :confirm => "Are you sure?", :method => :delete, :prompt => "Are you sure?" %><br>
         <a href="#" class="js-next" data-id="<%=@pin.id%>">Next Pin</a>
         <hr>
 
@@ -23,7 +23,7 @@
       <% if category.name == ""%>
         <li><%= "CATEGORY UNASSIGNED" %></li>
       <% else %> 
-        <li><%= "#{category.name.upcase}" %></li>
+        <li class="pinCategory"><%= "#{category.name.upcase}" %></li>
       <% end %>
     <% end %>
 
@@ -36,23 +36,23 @@
         <% end %> 
        </div>
       <div class="col-sm-6">
-        <%= f.submit "Update Categories",(options = {class: "btn btn-default form-control"}) %>
+        <%= f.submit "Add Categories",(options = {class: "btn btn-default form-control"}) %>
       </div>     
     <% end %>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
     $('form').submit(function(event) {
-      //update category
+   
       event.preventDefault();
- 
+  
       var values = $(this).serialize();
  
-      var posting = $.post('/categories', values);
+      var posting = $.post('/pins', values);
  
       posting.done(function(data) {
         var pin = data["pin"];
-        $("#pinCategory").text(post["category"]);
+        $(".pinCategory").text(pin["categories"]);
       });
     });
   });
@@ -64,6 +64,17 @@
       var nextId = parseInt($(".js-next").attr("data-id")) + 1;
       $.get("/pins/" + nextId + ".json", function(data) {
         var pin = data["pin"];
+      
+        if(pin["categories"][0] == undefined ){
+          $(".pinCategory").text("Category Unassigned");
+        } else if (pin["categories"].length > 1){
+          for(i=1; i < pin["categories"].length; i++){
+            $(".pinCategory").append("<li>" + pin["categories"][i]["name"] + "</li>"); 
+          } 
+        } else {
+          $(".pinCategory").text(pin["categories"][0]["name"]);
+        }
+
         $(".pinTitle").text(pin["title"]);
         $(".pinUrl").text(pin["url"]);
         $(".pinText").text(pin["text"]);

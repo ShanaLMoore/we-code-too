@@ -48,6 +48,8 @@ class PinsController < ApplicationController
       @errors = @pin.errors
       render :edit
     end
+
+    render json: @pin, status: 201
   end
 
   def destroy
