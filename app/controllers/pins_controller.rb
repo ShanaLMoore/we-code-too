@@ -41,15 +41,13 @@ class PinsController < ApplicationController
 
   def update
     @pin = Pin.find(params[:id])
-
+    
     if @pin.update(pin_params)
       redirect_to @pin
     else
       @errors = @pin.errors
       render :edit
     end
-
-    render json: @pin, status: 201
   end
 
   def destroy
@@ -61,6 +59,16 @@ class PinsController < ApplicationController
   def show_by_name
     @pin = Pin.find_by_slug(params[:slug])
     render :show
+  end
+
+  def add_category
+    @pin = Pin.find(params[:id])
+    
+    @pin.update(pin_params)
+      respond_to do |format|
+        format.html {render :show}
+        format.json {render json: @pin, status: 201}
+    end
   end
 
   private
