@@ -52,7 +52,7 @@
  
       posting.done(function(data) {
         var pin = data["pin"];
-        $(".pinCategory").append("<li>" + pin["categories"][i]["name"] + "</li>");
+        $(".pinCategory").append("<li>" + pin["categories"]["name"] + "</li>");
       });
     });
   });
