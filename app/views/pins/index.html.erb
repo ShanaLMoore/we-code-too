@@ -45,9 +45,23 @@ $(function() {
     var id = $(this).data("id");
     $.get("/pins/" + id + ".json", function(data) {
       var pin = data["pin"];
-      var descriptionText = "<br><p><strong>" + pin["text"] + "</strong></p>";
-      $("#pin-" + id).html(descriptionText);
+      var pinCategories = []
+        if(pin["categories"][0] == undefined ){
+          var pinCategory = "Category: Unassigned";
+        } else if (pin["categories"].length > 1){
+          for(i=1; i < pin["categories"].length; i++){
+             
+            pinCategories.push(" " + pin["categories"][i]["name"]); 
+            
+            var pinCategory = "<div>Categories: " + pinCategories + "</div>";
+          } 
+        } else {
+          var pinCategory = "<div>Category: " + pin["categories"][0]["name"] + "</div>";
+        }
 
+
+      var descriptionText = "<br><p><strong>" + pin["text"] + "</strong></p>" + pinCategory;
+      $("#pin-" + id).html(descriptionText);
     });
   });
 });
