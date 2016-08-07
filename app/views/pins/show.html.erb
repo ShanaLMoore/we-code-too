@@ -19,12 +19,8 @@
         <%= link_to "#{@pin.url}", @pin.url, html_options = {target: "_blank", class: "url pinUrl"} %><br><br>
     </p>
 
-    <% @pin.categories.each do |category| %>
-      <% if category.name == ""%>
-        <li><%= "CATEGORY UNASSIGNED" %></li>
-      <% else %> 
+    <% @pin.categories.each do |category| %> 
         <li class="pinCategory"><%= "#{category.name.upcase}" %></li>
-      <% end %>
     <% end %>
 
     <br><br>
@@ -64,11 +60,11 @@
       var nextId = parseInt($(".js-next").attr("data-id")) + 1;
       $.get("/pins/" + nextId + ".json", function(data) {
         var pin = data["pin"];
-      
+        
         if(pin["categories"][0] == undefined ){
           $(".pinCategory").text("Category Unassigned");
         } else if (pin["categories"].length > 1){
-          for(i=1; i < pin["categories"].length; i++){
+          for(i=0; i < pin["categories"].length; i++){
             $(".pinCategory").append("<li>" + pin["categories"][i]["name"] + "</li>"); 
           } 
         } else {

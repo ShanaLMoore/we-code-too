@@ -49,10 +49,10 @@ $(function() {
         if(pin["categories"][0] == undefined ){
           var pinCategory = "Category: Unassigned";
         } else if (pin["categories"].length > 1){
-          for(i=1; i < pin["categories"].length; i++){
+          for(i=0; i < pin["categories"].length; i++){
              
             pinCategories.push(" " + pin["categories"][i]["name"]); 
-            
+
             var pinCategory = "<div>Categories: " + pinCategories + "</div>";
           } 
         } else {
