@@ -4,14 +4,11 @@ class CreateCategories < ActiveRecord::Migration
       t.string :name
     end
 
-    add_column :pins, :category_id, :integer, references: :categories
-    add_index :pins, :category_id
-
+    if Category.all.empty?
       Category.create(name: "blog")
       Category.create(name: "meetup group")
       Category.create(name: "website")
-      Category.create(name: "unknown")
-
-
+    end
   end
+
 end

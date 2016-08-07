@@ -7,10 +7,11 @@ a {
   color: #000;
 }
 
-h1 {
+h1, h2 {
   font-family: 'Walter Turncoat', cursive;
   font-size: 60px;
   color: #000;
+  text-align: center;
 }
 
 h3 {
@@ -19,6 +20,7 @@ h3 {
 
 .pin-container{
   padding: 10px;
+  text-align: center;
 }
 .pin {
   padding: 40px;
@@ -36,4 +38,12 @@ hr{
 
 #notice {
   text-align: center;
+}
+
+.show {
+  text-align: center;
+}
+
+.scroll {
+  border:2px solid #ccc; height: 100px; overflow-y: scroll;
 }

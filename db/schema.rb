@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160309005217) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
   end
@@ -22,25 +25,21 @@ ActiveRecord::Schema.define(version: 20160309005217) do
     t.integer "category_id"
   end
 
-  add_index "pin_categories", ["category_id"], name: "index_pin_categories_on_category_id"
-  add_index "pin_categories", ["pin_id"], name: "index_pin_categories_on_pin_id"
+  add_index "pin_categories", ["category_id"], name: "index_pin_categories_on_category_id", using: :btree
+  add_index "pin_categories", ["pin_id"], name: "index_pin_categories_on_pin_id", using: :btree
 
   create_table "pins", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
     t.text     "text"
-    t.string   "slug"
-    t.integer  "category_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "resource_type"
     t.integer  "user_id"
   end
 
-  add_index "pins", ["category_id"], name: "index_pins_on_category_id"
-  add_index "pins", ["user_id"], name: "index_pins_on_user_id"
+  add_index "pins", ["user_id"], name: "index_pins_on_user_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.string   "name"
@@ -68,9 +67,12 @@ ActiveRecord::Schema.define(version: 20160309005217) do
     t.string   "uid"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["provider"], name: "index_users_on_provider"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["uid"], name: "index_users_on_uid"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["provider"], name: "index_users_on_provider", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
+  add_foreign_key "pin_categories", "categories"
+  add_foreign_key "pin_categories", "pins"
+  add_foreign_key "pins", "users"
 end

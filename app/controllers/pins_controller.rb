@@ -2,6 +2,13 @@ class PinsController < ApplicationController
   
   def index
     @pins = current_user.pins
+<<<<<<< HEAD
+=======
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @pins}
+    end
+>>>>>>> JS
     # @pins = Pin.search("Girl Develop It")
   end
 
@@ -11,6 +18,10 @@ class PinsController < ApplicationController
   
   def show
     @pin = Pin.find(params[:id])
+     respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @pin}
+    end   
   end
 
   def create
@@ -20,6 +31,7 @@ class PinsController < ApplicationController
     if @pin.valid?
       @pin.save
       redirect_to pin_path(@pin)
+      # render json: @pin, status: 201
     else
       @errors = @pin.errors
       render :new
@@ -32,7 +44,7 @@ class PinsController < ApplicationController
 
   def update
     @pin = Pin.find(params[:id])
-
+    
     if @pin.update(pin_params)
       redirect_to @pin
     else
@@ -52,10 +64,20 @@ class PinsController < ApplicationController
     render :show
   end
 
+  def add_category
+    @pin = Pin.find(params[:id])
+    
+    @pin.update(pin_params)
+      respond_to do |format|
+        format.html {render :show}
+        format.json {render json: @pin, status: 201}
+    end
+  end
+
   private
 
   def pin_params
-    params.require(:pin).permit(:title, :url, :slug, :text, :category_name, :image, :user_id)
+    params.require(:pin).permit(:title, :url, :text, :user_id, :image, category_ids:[], categories_attributes: [:name] )
   end
   
 end

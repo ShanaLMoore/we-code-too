@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'active_model_serializers'
 gem 'pry'
 gem 'bootstrap-sass',       '3.2.0.0'
 gem 'devise'
@@ -9,7 +9,7 @@ gem 'oauth2'
 gem 'dotenv-rails', :groups => [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'paperclip'
-gem 'sqlite3'  
+gem 'pg'  
 gem 'aws-sdk', '< 2.0'
 gem 'rails', '4.2.5.1'
 
