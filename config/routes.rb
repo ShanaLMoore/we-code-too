@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
   #route for Omniauth to send its authentication data to:
-  #devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   root 'pins#index'
   resources :pins
